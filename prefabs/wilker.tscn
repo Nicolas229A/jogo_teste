@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bulel3u6jc5da"]
+
+[ext_resource type="Texture2D" uid="uid://c1duxyx70cc10" path="res://assets/Extras/wilker.png.png" id="1_gkm6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgf22"]
+size = Vector2(14, 14)
+
+[node name="wilker" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="texture" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_gkm6b")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lgf22")
