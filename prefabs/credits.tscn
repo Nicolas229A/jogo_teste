@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://hh1lbygr0wva"]
+
+[ext_resource type="FontFile" uid="uid://dgka3hpenigy4" path="res://assets/Fonts/RevMiniPixel.ttf" id="1_6pks4"]
+[ext_resource type="Script" uid="uid://c33ouvm4xd8o" path="res://scripts/credits.gd" id="1_7h4d8"]
+[ext_resource type="Theme" uid="uid://dxutg1ms2rh4k" path="res://themes/pause_menu.tres" id="2_7h4d8"]
+
+[node name="credits" type="CanvasLayer"]
+script = ExtResource("1_7h4d8")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="credits_txt" type="Label" parent="menu_holder"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_6pks4")
+theme_override_font_sizes/font_size = 16
+text = "By Nicolas Almeida Valente
+"
+
+[node name="back_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_7h4d8")
+text = "BACK"
+
+[connection signal="pressed" from="menu_holder/back_btn" to="." method="_on_back_btn_pressed"]

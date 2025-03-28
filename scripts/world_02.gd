@@ -6,15 +6,12 @@ extends Node2D
 @onready var camera := $camera as Camera2D
 @onready var control: Control = $HUD/control as Control
 
-@onready var start_level_position: Marker2D = $start_level_position
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.player = player
 	Globals.player.follow_camera(camera)
 	Globals.player.player_dead.connect(reload_game)
-	control.time_is_up.connect(game_over)
-	Globals.start_place = start_level_position
+	control.time_is_up.connect(reload_game)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +22,6 @@ func reload_game():
 	await get_tree().create_timer(1.0).timeout
 	var player = player_scene.instantiate()
 	add_child(player)
-	control.reset_clock_timer()
 	Globals.player = player
 	Globals.player.follow_camera(camera)
 	Globals.player.player_dead.connect(reload_game)
@@ -33,7 +29,5 @@ func reload_game():
 	Globals.score = 0
 	Globals.player_life = 3	
 	Globals.respawn_player()
-	
-func game_over():
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
 	

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://x3ag8cgiktor"]
+
+[node name="start_level_position" type="Marker2D"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1q1qlpr5dti5"]
+
+[ext_resource type="Script" uid="uid://b84en6egg3nea" path="res://scripts/pause_menu.gd" id="1_iyb4f"]
+[ext_resource type="Theme" uid="uid://dxutg1ms2rh4k" path="res://themes/pause_menu.tres" id="2_ntkjb"]
+[ext_resource type="PackedScene" uid="uid://hh1lbygr0wva" path="res://prefabs/credits.tscn" id="3_ntkjb"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_iyb4f"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_ntkjb"]
+events = [SubResource("InputEventAction_iyb4f")]
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_iyb4f")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="resume_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_ntkjb")
+shortcut = SubResource("Shortcut_ntkjb")
+text = "RESUME"
+
+[node name="quit_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_ntkjb")
+text = "QUIT GAME"
+
+[node name="credits_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("2_ntkjb")
+text = "CREDITS"
+
+[node name="credits" parent="." instance=ExtResource("3_ntkjb")]
+visible = false
+
+[connection signal="pressed" from="menu_holder/resume_btn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="menu_holder/quit_btn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="menu_holder/credits_btn" to="." method="_on_credits_btn_pressed"]

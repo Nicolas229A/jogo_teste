@@ -1,0 +1,171 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3713qc634xje"]
+
+[ext_resource type="Texture2D" uid="uid://b4tcyuujy1s2e" path="res://assets/Mini FX, Items & UI/Mini UI/title-screen.jpg" id="1_aedtt"]
+[ext_resource type="Script" uid="uid://cvwfmthvw20cl" path="res://scripts/title_screen.gd" id="1_agckt"]
+[ext_resource type="Texture2D" uid="uid://b834sbovsxp6l" path="res://assets/Mini FX, Items & UI/Mini UI/game_logo.png" id="2_u6xng"]
+[ext_resource type="Texture2D" uid="uid://74lj2t6kx65p" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_agckt"]
+[ext_resource type="Theme" uid="uid://dpsgj1g0qatt1" path="res://themes/default_btn.tres" id="3_u6xng"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agckt"]
+
+[sub_resource type="Animation" id="Animation_nvgea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("margin_container:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("margin_container/hbox_container/mochi:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_agckt"]
+resource_name = "reveal"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("margin_container:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-350, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("margin_container/hbox_container/mochi:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcdfo"]
+_data = {
+&"RESET": SubResource("Animation_nvgea"),
+&"reveal": SubResource("Animation_agckt")
+}
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_agckt")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 320.0
+texture = ExtResource("1_aedtt")
+expand_mode = 2
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="hbox_container" type="HBoxContainer" parent="margin_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="vbox_container" type="VBoxContainer" parent="margin_container/hbox_container"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="game_logo" type="TextureRect" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+texture = ExtResource("2_u6xng")
+
+[node name="start_btn" type="Button" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+theme = ExtResource("3_u6xng")
+text = "START"
+
+[node name="separator1" type="HSeparator" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_agckt")
+
+[node name="credits_btn" type="Button" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+theme = ExtResource("3_u6xng")
+text = "CREDITS"
+
+[node name="separator2" type="HSeparator" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_agckt")
+
+[node name="quit_btn" type="Button" parent="margin_container/hbox_container/vbox_container"]
+layout_mode = 2
+theme = ExtResource("3_u6xng")
+text = "QUIT GAME"
+
+[node name="mochi" type="TextureRect" parent="margin_container/hbox_container"]
+layout_mode = 2
+texture = ExtResource("3_agckt")
+expand_mode = 2
+flip_h = true
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mcdfo")
+}
+autoplay = "reveal"
+
+[connection signal="pressed" from="margin_container/hbox_container/vbox_container/start_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="margin_container/hbox_container/vbox_container/credits_btn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="margin_container/hbox_container/vbox_container/quit_btn" to="." method="_on_quit_btn_pressed"]

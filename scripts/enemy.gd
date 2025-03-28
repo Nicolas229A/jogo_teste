@@ -38,10 +38,13 @@ func flip_direction():
 		texture.flip_h = false
 		
 func kill_ground_enemy(animation_name: StringName) -> void:
-		kill_and_score()
-		
+	kill_and_score()
+
+func kill_ground_enemy_2() -> void:
+	kill_and_score()
+
 func kill_air_enemy() -> void:
-		kill_and_score()
+	kill_and_score()
 	
 func kill_and_score():
 	Globals.score += enemy_score

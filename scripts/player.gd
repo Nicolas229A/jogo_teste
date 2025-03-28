@@ -9,6 +9,7 @@ const JUMP_FORCE = -400.0
 
 var is_jumping := false
 var knockback_vector := Vector2.ZERO 
+var knockback_power := 20
 
 signal player_dead()
 
@@ -47,26 +48,24 @@ func _physics_process(delta: float) -> void:
 		
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-		if $ray_right.is_colliding():
-			take_damage(Vector2(-200, -200))
-			print("Colidiu Ray Direito")
-		elif $ray_left.is_colliding():
-			take_damage(Vector2(200, -200))
-			print("Colidiu Ray Esquerdo")
+		var knockback = Vector2((global_position.x - body.global_position.x) * knockback_power, -200)
+		print(knockback)
+		take_damage(knockback)
 		
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_transform.remote_path = camera_path 
 
-func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
+func take_damage(knockback_force):
 	if Globals.player_life > 0:
 		Globals.player_life -= 1
+		knockback(knockback_force)
 		print("-1 ponto de vida, VIDA: ", Globals.player_life)
 	else:
 		queue_free()
-		print("GAME OVER!")
 		emit_signal("player_dead")
-	
+		
+func knockback (knockback_force := Vector2.ZERO, duration := 0.25):
 	if knockback_force != Vector2.ZERO:
 		knockback_vector = knockback_force
 		print("Knockback tem força")
@@ -77,8 +76,6 @@ func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
 		knockback_tween.parallel().tween_property(animation, "modulate", Color(1, 1, 1, 1), duration)
 		print("Tomou o dano")
 		
-
-
 func _on_head_collider_body_entered(body: Node2D) -> void:
 	if body.has_method("break_sprite"):
 		body.hitpoints -= 1

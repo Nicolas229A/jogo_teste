@@ -24,7 +24,6 @@ Globals="*res://scripts/singletons/globals.gd"
 window/size/viewport_width=640
 window/size/viewport_height=320
 window/stretch/mode="viewport"
-window/stretch/scale=2.0
 
 [input]
 

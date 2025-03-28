@@ -87,7 +87,7 @@ _data = {
 [node name="base_patrol" type="Node2D"]
 
 [node name="rocket_cherry" type="CharacterBody2D" parent="."]
-position = Vector2(0, -39.8777)
+position = Vector2(0, 10)
 collision_layer = 4
 script = ExtResource("1_172ag")
 
@@ -111,8 +111,7 @@ debug_color = Color(0.637993, 0.339454, 1, 0.42)
 curve = SubResource("Curve2D_fajwe")
 
 [node name="path_follow2D" type="PathFollow2D" parent="path2D"]
-position = Vector2(0, -39.8777)
-progress = 49.8788
+position = Vector2(0, 10)
 rotates = false
 
 [node name="remote" type="RemoteTransform2D" parent="path2D/path_follow2D"]

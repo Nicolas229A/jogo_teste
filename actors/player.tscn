@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://5qdbyenh6fqt"]
+[gd_scene load_steps=16 format=3 uid="uid://5qdbyenh6fqt"]
 
 [ext_resource type="Script" uid="uid://bwpuan0rvosyk" path="res://scripts/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://bli403ctb410j" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_1yqc4"]
 [ext_resource type="Texture2D" uid="uid://74lj2t6kx65p" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_esgq3"]
 [ext_resource type="Texture2D" uid="uid://d4oiudj8egud" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="4_kjkj0"]
+[ext_resource type="Texture2D" uid="uid://7tra2iqb6wmd" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="5_kjkj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naeyk"]
 atlas = ExtResource("2_1yqc4")
@@ -66,6 +67,14 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kjkj0")
+}],
+"loop": true,
+"name": &"took_damage",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvpqy"]
@@ -85,17 +94,15 @@ script = ExtResource("1_mvpqy")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j8rs1")
-animation = &"idle"
+animation = &"took_damage"
 autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-2.68221e-07, 8.5)
 scale = Vector2(0.546461, 0.470088)
 shape = SubResource("RectangleShape2D_mvpqy")
 
 [node name="hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -105,18 +112,6 @@ shape = SubResource("RectangleShape2D_esgq3")
 debug_color = Color(1, 0.000916891, 0.0812741, 0.42)
 
 [node name="remote" type="RemoteTransform2D" parent="."]
-
-[node name="ray_right" type="RayCast2D" parent="."]
-visible = false
-position = Vector2(8, 9)
-target_position = Vector2(4, 0)
-collision_mask = 4
-
-[node name="ray_left" type="RayCast2D" parent="."]
-visible = false
-position = Vector2(-8, 9)
-target_position = Vector2(-4, 0)
-collision_mask = 4
 
 [node name="head_collider" type="Area2D" parent="."]
 collision_layer = 0
