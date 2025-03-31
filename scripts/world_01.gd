@@ -12,7 +12,7 @@ extends Node2D
 func _ready() -> void:
 	Globals.player = player
 	Globals.player.follow_camera(camera)
-	Globals.player.player_dead.connect(reload_game)
+	Globals.player.player_dead.connect(game_over)
 	control.time_is_up.connect(game_over)
 	Globals.start_place = start_level_position
 	
@@ -29,11 +29,8 @@ func reload_game():
 	Globals.player = player
 	Globals.player.follow_camera(camera)
 	Globals.player.player_dead.connect(reload_game)
-	Globals.coins = 0
-	Globals.score = 0
-	Globals.player_life = 3	
 	Globals.respawn_player()
 	
 func game_over():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	

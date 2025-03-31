@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv3npi06dqt0x"]
+[gd_scene load_steps=10 format=3 uid="uid://b3713qc634xje"]
 
 [ext_resource type="Texture2D" uid="uid://b4tcyuujy1s2e" path="res://assets/Mini FX, Items & UI/Mini UI/title-screen.jpg" id="1_aedtt"]
 [ext_resource type="Script" uid="uid://cvwfmthvw20cl" path="res://scripts/title_screen.gd" id="1_agckt"]
